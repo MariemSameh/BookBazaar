@@ -1,4 +1,4 @@
-using BookBazaar.Data;
+using BookBazaar.DataAccess.Data;
 using BookBazaar.Repository;
 using BookBazaar.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;

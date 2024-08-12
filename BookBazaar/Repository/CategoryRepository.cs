@@ -1,4 +1,4 @@
-﻿using BookBazaar.Data;
+﻿using BookBazaar.DataAccess.Data;
 using BookBazaar.Models;
 using BookBazaar.Repository.IRepository;
 

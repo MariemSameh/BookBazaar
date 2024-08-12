@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookBazaar.Migrations
+namespace BookBazaar.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddDescriptionToCaregory : Migration

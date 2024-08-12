@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BookBazaar.Migrations
+namespace BookBazaar.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class CreateDB : Migration
