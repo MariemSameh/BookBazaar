@@ -2,8 +2,9 @@
 using BookBazaar.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookBazaar.Controllers
+namespace BookBazaar.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,13 +27,13 @@ namespace BookBazaar.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            
-			if (_unitOfWork.Category.GetFirstOrDefault(u => u.Name.ToLower() == category.Name.ToLower()) != null)
-			{
-				ModelState.AddModelError("name", "Category Name Already Exists.");
-			}
 
-			if (ModelState.IsValid)
+            if (_unitOfWork.Category.GetFirstOrDefault(u => u.Name.ToLower() == category.Name.ToLower()) != null)
+            {
+                ModelState.AddModelError("name", "Category Name Already Exists.");
+            }
+
+            if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(category);
                 _unitOfWork.Save();
@@ -60,9 +61,9 @@ namespace BookBazaar.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category category)
         {
-            
-			
-			if (ModelState.IsValid)
+
+
+            if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(category);
                 _unitOfWork.Save();
@@ -74,22 +75,22 @@ namespace BookBazaar.Controllers
 
         public IActionResult Delete(int? id)
         {
-            if(id == 0 || id == null)
+            if (id == 0 || id == null)
             {
                 return NotFound();
             }
-            var obj = _unitOfWork.Category.GetFirstOrDefault(x=>x.categoryId == id);   
-            if(obj == null)
+            var obj = _unitOfWork.Category.GetFirstOrDefault(x => x.categoryId == id);
+            if (obj == null)
             {
                 return NotFound();
             }
             return View(obj);
         }
 
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _unitOfWork.Category.GetFirstOrDefault(x=>x.categoryId==id);
+            var obj = _unitOfWork.Category.GetFirstOrDefault(x => x.categoryId == id);
             if (obj == null)
             {
                 return NotFound();

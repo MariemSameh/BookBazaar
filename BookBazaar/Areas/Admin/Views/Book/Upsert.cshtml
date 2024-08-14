@@ -1,0 +1,115 @@
+﻿@model BookVM
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-primary bg-gradient m-lg-1 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.book.bookId!=0?"Update":"Add") Book</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" class="row" enctype="multipart/form-data">
+			<input asp-for="book.bookId" hidden />
+			<input asp-for="book.ImageUrl" hidden />
+			<div class="row">
+				<div class="border p-3 mt-4 ">
+					@*<div asp-validation-summary="All"></div>*@
+					<div class="mb-3">
+						<label asp-for="book.title"></label>
+						<input asp-for="book.title" class="form-control" />
+						<span asp-validation-for="book.title" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.Description"></label>
+						<textarea asp-for="book.Description" class="form-control"></textarea>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="book.Author"></label>
+						<input asp-for="book.Author" class="form-control" />
+						<span asp-validation-for="book.Author" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.ISBN"></label>
+						<input asp-for="book.ISBN" class="form-control" />
+						<span asp-validation-for="book.ISBN" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.ListPrice"></label>
+						<input asp-for="book.ListPrice" class="form-control" />
+						<span asp-validation-for="book.ListPrice" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.Price"></label>
+						<input asp-for="book.Price" class="form-control" />
+						<span asp-validation-for="book.Price" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.Price50"></label>
+						<input asp-for="book.Price50" class="form-control" />
+						<span asp-validation-for="book.Price50" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="book.Price100"></label>
+						<input asp-for="book.Price100" class="form-control" />
+						<span asp-validation-for="book.Price100" class="text-danger"></span>
+					</div>
+					<div class="mb-1">
+						<label asp-for="book.ImageUrl"></label>
+						<input type="file" name="file" class="form-control" onchange="SetImgSrc()" />
+					</div>
+					<div class="col-2">
+						<img src="@Model.book.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+					</div>
+					<div class="mb-3 pt-3">
+						<select asp-for="@Model.book.CategoryId" asp-items="@Model.CategoryList" class="form-select border-1 ">
+							<option disabled selected>--Select Category--</option>
+						</select>
+						@* <label asp-for="book.CategoryId"></label> *@
+						<span asp-validation-for="book.CategoryId" class="text-danger"></span>
+					</div>
+					@if (Model.book.bookId != 0)
+					{
+						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+					}
+					else
+					{
+						<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+					}
+					<a asp-controller="Book" asp-action="Index" class="btn btn-secondary" style="width:150px">
+						Back to List
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+			toolbar_mode: 'floating',
+		});
+
+		function ValidateInput() {
+			if (document.getElementById("uploadBox").value == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please upload an Image!',
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
+}

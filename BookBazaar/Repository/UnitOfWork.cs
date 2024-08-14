@@ -1,4 +1,5 @@
 ﻿using BookBazaar.DataAccess.Data;
+using BookBazaar.Models;
 using BookBazaar.Repository.IRepository;
 
 namespace BookBazaar.Repository
@@ -10,8 +11,10 @@ namespace BookBazaar.Repository
         {
             _context = context;
             Category = new CategoryRepository(_context);
+            Book = new BookReposatory(_context);
         }
         public ICategoryRepository Category { get; private set; }
+        public IBookReposatory Book { get; private set; }
 
         public void Save()
         {
