@@ -25,6 +25,7 @@ namespace BookBazaar.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
+            
             BookVM bookVM = new()
             {
                 CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
@@ -47,7 +48,7 @@ namespace BookBazaar.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert(BookVM bookVM, IFormFile file)
+        public IActionResult Upsert(BookVM bookVM, IFormFile? file)
         {
             
             if (ModelState.IsValid)
@@ -57,22 +58,27 @@ namespace BookBazaar.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string bookPath = Path.Combine(wwwRootPath, @"images\Book");
-
-					if (bookVM.book.ImageUrl != null)
-					{
-						var oldImagePath = Path.Combine(wwwRootPath, bookVM.book.ImageUrl.TrimStart('\\'));
-						if (System.IO.File.Exists(oldImagePath))
-						{
-							System.IO.File.Delete(oldImagePath);
-						}
-					}
-
-					using (var fileStream = new FileStream(Path.Combine(bookPath, fileName), FileMode.Create))
+                    if (bookVM.book.ImageUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, bookVM.book.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(bookPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
+                        fileStream.Dispose();
+
                     }
                     bookVM.book.ImageUrl = @"\images\Book\" + fileName;
                 }
+                else
+                {
+                    bookVM.book.ImageUrl = @"\images\NoImage.png";
+				}
+                
 
                 if(bookVM.book.bookId == 0)
                 {

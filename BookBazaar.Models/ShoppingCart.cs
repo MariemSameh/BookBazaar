@@ -19,7 +19,7 @@ namespace BookBazaar.Models
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [NotMapped]
         public double Price { get; set; }

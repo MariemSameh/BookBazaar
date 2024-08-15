@@ -1,18 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookBazaar.Models
 {
-    public class User
+    public class ApplicationUser: IdentityUser
     {
-        [Key]
-        public string userId { get; set; }
+        
+        [Required]
         public string firstName { get; set; }
+        [Required]
         public string lastName { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string address { get; set; }
-        public int phoneNumber { get; set; }
-        public DateOnly dateCreated { get; set; }
-        public DateTime LastLogin { get; set; }
+		public string? StreetAddress { get; set; }
+		public string? City { get; set; }
+		public string? State { get; set; }
+		public DateOnly? dateCreated { get; set; }
+        public DateTime? LastLogin { get; set; }
     }
 }

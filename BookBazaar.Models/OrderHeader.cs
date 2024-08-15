@@ -11,7 +11,7 @@ namespace BookBazaar.Models
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]
-        public User user { get; set; }
+        public ApplicationUser user { get; set; }
 
         [Required]
         public DateTime OrderDate { get; set; }

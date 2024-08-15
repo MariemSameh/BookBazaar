@@ -14,7 +14,7 @@
 			<input asp-for="book.ImageUrl" hidden />
 			<div class="row">
 				<div class="border p-3 mt-4 ">
-					@*<div asp-validation-summary="All"></div>*@
+					<div asp-validation-summary="All"></div>
 					<div class="mb-3">
 						<label asp-for="book.title"></label>
 						<input asp-for="book.title" class="form-control" />
@@ -23,6 +23,7 @@
 					<div class="mb-3">
 						<label asp-for="book.Description"></label>
 						<textarea asp-for="book.Description" class="form-control"></textarea>
+						<span asp-validation-for="book.Description" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
@@ -58,6 +59,7 @@
 					<div class="mb-1">
 						<label asp-for="book.ImageUrl"></label>
 						<input type="file" name="file" class="form-control" onchange="SetImgSrc()" />
+						
 					</div>
 					<div class="col-2">
 						<img src="@Model.book.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
