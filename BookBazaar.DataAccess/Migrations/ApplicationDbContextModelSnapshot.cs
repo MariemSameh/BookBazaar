@@ -68,7 +68,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.Category", b =>
@@ -93,7 +93,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasKey("categoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.Company", b =>
@@ -125,7 +125,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.CoverType", b =>
@@ -143,7 +143,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CoverTypes");
+                    b.ToTable("CoverTypes", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.OrderDetail", b =>
@@ -175,7 +175,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetail", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.OrderHeader", b =>
@@ -251,7 +251,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderHeaders");
+                    b.ToTable("OrderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("BookBazaar.Models.ShoppingCart", b =>
@@ -278,7 +278,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasIndex("bookId");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

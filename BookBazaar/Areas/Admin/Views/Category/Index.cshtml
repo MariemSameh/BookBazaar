@@ -44,14 +44,17 @@
                             <td width="30%">
                                 @obj.Description
                             </td>
-                            <td>
-                                <div class="w-75 btn-group" role="group">
-                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.categoryId"
-                                       class="btn btn-primary  mx-1"> <i class="bi bi-pencil-square"></i></a>
-                                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.categoryId"
-                                       class="btn btn-danger mx-1"> <i class="bi bi-trash-fill"></i></a>
-                                </div>
-                            </td>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <td>
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.categoryId"
+                                        class="btn btn-primary  mx-1"> <i class="bi bi-pencil-square"></i></a>
+                                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.categoryId"
+                                        class="btn btn-danger mx-1"> <i class="bi bi-trash-fill"></i></a>
+                                    </div>
+                                </td>
+                            }
                         </tr>
                     }
                 </tbody>

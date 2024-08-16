@@ -1,6 +1,8 @@
 ﻿using BookBazaar.Models;
 using BookBazaar.Models.ViewModels;
 using BookBazaar.Repository.IRepository;
+using BookBazaar.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
@@ -8,6 +10,7 @@ using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 namespace BookBazaar.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize (Roles = SD.Role_Admin)]
     public class BookController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
