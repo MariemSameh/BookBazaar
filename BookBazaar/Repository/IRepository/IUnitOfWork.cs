@@ -4,6 +4,7 @@
     {
         ICategoryRepository Category { get; }
         IBookReposatory Book {  get; }
+        ICompanyReposatory Company { get; }
 
         void Save();
     }

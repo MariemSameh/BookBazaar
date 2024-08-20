@@ -47,12 +47,6 @@
                                 </ul>
                             </li>
                         }
-                        @if (User.IsInRole(SD.Role_Customer))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            </li>
-                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

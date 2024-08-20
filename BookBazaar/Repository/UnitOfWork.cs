@@ -12,9 +12,11 @@ namespace BookBazaar.Repository
             _context = context;
             Category = new CategoryRepository(_context);
             Book = new BookReposatory(_context);
+            Company = new CompanyReposatory(_context);
         }
         public ICategoryRepository Category { get; private set; }
         public IBookReposatory Book { get; private set; }
+        public ICompanyReposatory Company { get; private set; }
 
         public void Save()
         {
