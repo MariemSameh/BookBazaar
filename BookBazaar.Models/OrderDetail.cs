@@ -19,7 +19,7 @@ namespace BookBazaar.Models
 
         [Required]
         public int bookId { get; set; }
-        [ForeignKey("ProductId")]
+        [ForeignKey("bookId")]
         [ValidateNever]
         public Book book { get; set; }
     }

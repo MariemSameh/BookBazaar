@@ -4,6 +4,7 @@ using BookBazaar.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookBazaar.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240821133433_addCompanyToUser")]
+    partial class addCompanyToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,38 +128,6 @@ namespace BookBazaar.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2,
-                            City = "Cairo",
-                            Name = "Dar Afnan",
-                            PhoneNumber = "111222333",
-                            PostalCode = "312",
-                            State = "Egypt",
-                            StreetAddress = "New Egypt"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Cairo",
-                            Name = "Dar Arafa",
-                            PhoneNumber = "111222555",
-                            PostalCode = "313",
-                            State = "Egypt",
-                            StreetAddress = "Cairo"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            City = "Cairo",
-                            Name = "Dar nashr",
-                            PhoneNumber = "225554477",
-                            PostalCode = "312",
-                            State = "Egypt",
-                            StreetAddress = "New Egypt"
-                        });
                 });
 
             modelBuilder.Entity("BookBazaar.Models.CoverType", b =>
@@ -188,6 +159,9 @@ namespace BookBazaar.DataAccess.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("bookId")
                         .HasColumnType("int");
 
@@ -201,7 +175,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("bookId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -221,6 +195,10 @@ namespace BookBazaar.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -233,8 +211,8 @@ namespace BookBazaar.DataAccess.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateOnly>("PaymentDueDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("PaymentDueDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("PaymentIntentId")
                         .HasColumnType("nvarchar(max)");
@@ -270,14 +248,6 @@ namespace BookBazaar.DataAccess.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("firstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -576,7 +546,7 @@ namespace BookBazaar.DataAccess.Migrations
 
                     b.HasOne("BookBazaar.Models.Book", "book")
                         .WithMany()
-                        .HasForeignKey("bookId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookBazaar.Models
 {
@@ -15,5 +17,10 @@ namespace BookBazaar.Models
 		public string? State { get; set; }
 		public DateOnly? dateCreated { get; set; }
         public DateTime? LastLogin { get; set; }
+
+        public int? companyId { get; set; }
+        [ForeignKey("companyId")]
+        [ValidateNever]
+        public Company Company { get; set; }
     }
 }

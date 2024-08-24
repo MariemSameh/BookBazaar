@@ -4,10 +4,10 @@ using BookBazaar.Repository.IRepository;
 
 namespace BookBazaar.Repository
 {
-    public class BookReposatory : Repository<Book>, IBookReposatory
+    public class BookRepository : Repository<Book>, IBookRepository
     {
         private ApplicationDbContext _db;
-        public BookReposatory(ApplicationDbContext db) :  base(db) 
+        public BookRepository(ApplicationDbContext db) :  base(db) 
         {
             _db = db;
         }

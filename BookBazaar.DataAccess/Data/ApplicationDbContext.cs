@@ -21,6 +21,13 @@ namespace BookBazaar.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 2, Name = "Dar Afnan", StreetAddress = "New Egypt", City = "Cairo", State = "Egypt", PostalCode = "312", PhoneNumber = "111222333"},
+				new Company { Id = 3, Name = "Dar Arafa", StreetAddress = "Cairo", City = "Cairo", State = "Egypt", PostalCode = "313", PhoneNumber = "111222555" },
+				new Company { Id = 4, Name = "Dar nashr", StreetAddress = "New Egypt", City = "Cairo", State = "Egypt", PostalCode = "312", PhoneNumber = "225554477" }
+				);
+
         }
     }
 }

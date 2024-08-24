@@ -2,8 +2,7 @@
 
 namespace BookBazaar.Repository.IRepository
 {
-    public interface IBookReposatory : IRepository<Book>
+    public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
-        void Update(Book obj);
     }
 }

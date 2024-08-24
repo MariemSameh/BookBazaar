@@ -4,17 +4,19 @@ using BookBazaar.Repository.IRepository;
 
 namespace BookBazaar.Repository
 {
-    public class CompanyReposatory : Repository<Company>, ICompanyReposatory
-    {
+    public class CompanyRepository : Repository<Company>, ICompanyRepository
+	{
         private ApplicationDbContext _db;
 
-        public CompanyReposatory(ApplicationDbContext db) : base(db)
+        public CompanyRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(Company company)
+
+
+        public void Update(Company obj)
         {
-            _db.Update(company);
+            _db.Companies.Update(obj);
         }
     }
 }

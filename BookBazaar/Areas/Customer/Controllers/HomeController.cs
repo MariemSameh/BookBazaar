@@ -1,7 +1,9 @@
 using BookBazaar.Models;
 using BookBazaar.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BookBazaar.Areas.Customer.Controllers
 {
@@ -25,8 +27,38 @@ namespace BookBazaar.Areas.Customer.Controllers
 
         public IActionResult Details(int id)
         {
-            Book book = _unitOfWork.Book.GetFirstOrDefault(u=>u.bookId == id, includeProperties:"Category");
-            return View(book);
+            ShoppingCart cart = new()
+            {
+                book = _unitOfWork.Book.GetFirstOrDefault(u => u.bookId == id, includeProperties: "Category"),
+                Count = 1,
+                bookId = id
+            };
+            return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.UserId = userId;
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.UserId == userId && u.bookId == shoppingCart.bookId);
+
+            if (cartFromDb != null)
+            {
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+            }
+            TempData["success"] = "Cart Updated Successfully";
+
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
