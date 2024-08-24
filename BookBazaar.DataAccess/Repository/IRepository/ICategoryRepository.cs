@@ -2,8 +2,8 @@
 
 namespace BookBazaar.Repository.IRepository
 {
-    public interface IOrderHeaderRepository : IRepository<OrderHeader>
+    public interface ICategoryRepository : IRepository<Category>
     {
-        void Update(OrderHeader obj);
+        void Update(Category obj);
     }
 }

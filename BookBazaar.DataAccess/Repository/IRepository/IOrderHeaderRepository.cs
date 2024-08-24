@@ -2,8 +2,10 @@
 
 namespace BookBazaar.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IOrderHeaderRepository : IRepository<OrderHeader>
     {
-        void Update(Category obj);
+        void Update(OrderHeader obj);
+        void UpdateStatus(int id, string OrderStatus, string? PaymentStatus = null);
+        void UpdateStriprPaymentId (int id, string sessionId, string paymentIntentId);
     }
 }
