@@ -57,6 +57,7 @@ namespace BookBazaar.Areas.Customer.Controllers
             shoppingCartVM.orderHeader.StreetAddress = shoppingCartVM.orderHeader.user.StreetAddress;
             shoppingCartVM.orderHeader.City = shoppingCartVM.orderHeader.user.City;
             shoppingCartVM.orderHeader.State = shoppingCartVM.orderHeader.user.State;
+            shoppingCartVM.orderHeader.PostalCode = shoppingCartVM.orderHeader.user.PostalCode;
 
             foreach (var cart in shoppingCartVM.CartList)
             {

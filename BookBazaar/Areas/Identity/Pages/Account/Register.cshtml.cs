@@ -118,6 +118,7 @@ namespace BookBazaar.Areas.Identity.Pages.Account
             public string? City { get; set; }
             public string? State { get; set; }
             public string? phoneNumber { get; set; }
+            public string? PostalCode { get; set; }
 
             public string? Role {  get; set; }
             [ValidateNever]
@@ -173,6 +174,7 @@ namespace BookBazaar.Areas.Identity.Pages.Account
                 user.City = Input.City;
                 user.State = Input.State;
                 user.PhoneNumber = Input.phoneNumber;
+                user.PostalCode = Input.PostalCode;
 
                 if(Input.Role == SD.Role_Company)
                 {

@@ -15,7 +15,8 @@ namespace BookBazaar.Models
 		public string? StreetAddress { get; set; }
 		public string? City { get; set; }
 		public string? State { get; set; }
-		public DateOnly? dateCreated { get; set; }
+        public string? PostalCode { get; set; }
+        public DateOnly? dateCreated { get; set; }
         public DateTime? LastLogin { get; set; }
 
         public int? companyId { get; set; }
