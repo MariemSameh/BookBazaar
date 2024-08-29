@@ -171,6 +171,7 @@ namespace BookBazaar.Areas.Customer.Controllers
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
                 }
+                HttpContext.Session.Clear();
             }
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.UserId == orderHeader.UserId).ToList();
@@ -191,10 +192,11 @@ namespace BookBazaar.Areas.Customer.Controllers
 
         public IActionResult Minus(int? cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.shoppingCartId == cartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.shoppingCartId == cartId, tracked: true);
             if (cartFromDb.Count <= 1)
             {
                 _unitOfWork.ShoppingCart.Remove(cartFromDb);
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.UserId == cartFromDb.UserId).Count() - 1);
             }
             else
             {
@@ -207,8 +209,11 @@ namespace BookBazaar.Areas.Customer.Controllers
 
         public IActionResult Remove(int? cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.shoppingCartId == cartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.shoppingCartId == cartId, tracked: true);
             _unitOfWork.ShoppingCart.Remove(cartFromDb);
+
+            HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.UserId == cartFromDb.UserId).Count() - 1);
+
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }

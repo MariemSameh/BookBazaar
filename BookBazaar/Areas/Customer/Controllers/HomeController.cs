@@ -1,5 +1,6 @@
 using BookBazaar.Models;
 using BookBazaar.Repository.IRepository;
+using BookBazaar.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -50,14 +51,16 @@ namespace BookBazaar.Areas.Customer.Controllers
             {
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
             }
             else
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.UserId == userId).Count());
             }
             TempData["success"] = "Cart Updated Successfully";
 
-            _unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
