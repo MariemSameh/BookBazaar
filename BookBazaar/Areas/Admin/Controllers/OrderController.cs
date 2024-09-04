@@ -43,8 +43,7 @@ namespace BookBazaar.Areas.Admin.Controllers
         public IActionResult UpdateOrderDetail()
         {
             var OrderHeaderFromDb = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
-            OrderHeaderFromDb.firstName = OrderVM.OrderHeader.firstName;
-            OrderHeaderFromDb.lastName = OrderVM.OrderHeader.lastName;
+            OrderHeaderFromDb.Name = OrderVM.OrderHeader.Name;
             OrderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
             OrderHeaderFromDb.City = OrderVM.OrderHeader.City;
             OrderHeaderFromDb.State = OrderVM.OrderHeader.State; 

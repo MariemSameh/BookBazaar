@@ -38,8 +38,6 @@ namespace BookBazaar.Models
         [Required]
         public string PostalCode { get; set; }
         [Required]
-        public string firstName { get; set; }
-        [Required]
-        public string lastName { get; set; }
+        public string Name { get; set; }
     }
 }

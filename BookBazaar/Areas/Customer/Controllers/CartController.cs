@@ -51,8 +51,7 @@ namespace BookBazaar.Areas.Customer.Controllers
             };
 
             shoppingCartVM.orderHeader.user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == userId);
-            shoppingCartVM.orderHeader.firstName = shoppingCartVM.orderHeader.user.firstName;
-            shoppingCartVM.orderHeader.lastName = shoppingCartVM.orderHeader.user.lastName;
+            shoppingCartVM.orderHeader.Name = shoppingCartVM.orderHeader.user.Name;
             shoppingCartVM.orderHeader.PhoneNumber = shoppingCartVM.orderHeader.user.PhoneNumber;
             shoppingCartVM.orderHeader.StreetAddress = shoppingCartVM.orderHeader.user.StreetAddress;
             shoppingCartVM.orderHeader.City = shoppingCartVM.orderHeader.user.City;

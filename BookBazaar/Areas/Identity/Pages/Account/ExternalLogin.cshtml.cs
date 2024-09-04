@@ -87,9 +87,7 @@ namespace BookBazaar.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
             [Required]
-            public string firstName { get; set; }
-            [Required]
-            public string lastName { get; set; }
+            public string Name { get; set; }
             public string? StreetAddress { get; set; }
             public string? City { get; set; }
             public string? State { get; set; }
@@ -143,7 +141,7 @@ namespace BookBazaar.Areas.Identity.Pages.Account
                     Input = new InputModel
                     {
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        firstName = info.Principal.FindFirstValue(ClaimTypes.Name)
+                        Name = info.Principal.FindFirstValue(ClaimTypes.Name)
                     };
                 }
                 return Page();
@@ -167,8 +165,7 @@ namespace BookBazaar.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.firstName = Input.firstName;
-                user.lastName = Input.lastName;
+                user.Name = Input.Name;
                 user.StreetAddress = Input.StreetAddress;
                 user.City = Input.City; 
                 user.State = Input.State;

@@ -32,8 +32,7 @@ function loadDataTable(status) {
         },
         "columns": [
             { "data": "id", "width": "5%" },
-            { "data": "firstName", "width": "25%" },
-            { "data": "lastName", "width": "25%" },
+            { "data": "name", "width": "25%" },
             { "data": "phoneNumber", "width": "15%" },
             { "data": "user.email", "width": "15%" },
             { "data": "orderStatus", "width": "15%" },

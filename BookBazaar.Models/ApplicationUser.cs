@@ -9,9 +9,7 @@ namespace BookBazaar.Models
     {
         
         [Required]
-        public string firstName { get; set; }
-        [Required]
-        public string lastName { get; set; }
+        public string Name { get; set; }
 		public string? StreetAddress { get; set; }
 		public string? City { get; set; }
 		public string? State { get; set; }
@@ -23,5 +21,7 @@ namespace BookBazaar.Models
         [ForeignKey("companyId")]
         [ValidateNever]
         public Company Company { get; set; }
+        [NotMapped]
+        public string Role {  get; set; }
     }
 }

@@ -49,8 +49,7 @@ namespace BookBazaar.DataAccess.DbInitializer
                 {
                     UserName = "Admin@yahoo.com",
                     Email = "Admin@yahoo.com",
-                    firstName = "Admin",
-                    lastName = "Mariem",
+                    Name = "Admin",
                     PhoneNumber = "1234567890",
                     StreetAddress = "123 main st",
                     City = "Cairo",
