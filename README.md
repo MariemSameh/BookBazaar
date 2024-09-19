@@ -1,5 +1,5 @@
 BookBazaar - Online Bookstore Platform.
-*Description*: BookBazaar is an online bookstore platform built using ASP.NET Core MVC architecture. The project is structured into several layers and areas to manage both administrative and customer-facing functionalities effectively. This repository contains the complete implementation of a multi-layered architecture following the repository and unit of work design patterns, ensuring maintainability, scalability, and separation of concerns.
+-*Description*: BookBazaar is an online bookstore platform built using ASP.NET Core MVC architecture. The project is structured into several layers and areas to manage both administrative and customer-facing functionalities effectively. This repository contains the complete implementation of a multi-layered architecture following the repository and unit of work design patterns, ensuring maintainability, scalability, and separation of concerns.
 *Technologies*:
 - *ASP.NET Core MVC*: Framework for building the web application.
 - *Entity Framework Core*: ORM for interacting with the database.
@@ -36,9 +36,8 @@ BookBazaar - Online Bookstore Platform.
      - This area is responsible for customer-facing operations such as viewing books, managing their shopping cart, and chatting.
      - *Controllers*:
        - CartController.cs: Manages shopping cart functionalities.
-       - ChatRoomController.cs: Facilitates a chat room where users can communicate.
        - HomeController.cs: Handles the homepage and general customer navigation.
      - *Views*:
        - Organized into folders (Cart, Home), each containing views (Razor pages) for rendering the customer interface.
-*Identity*:
-   - This area contains components for managing user authentication and authorization using ASP.NET Core Identity.
+   -*Identity*:
+    - This area contains components for managing user authentication and authorization using ASP.NET Core Identity.
