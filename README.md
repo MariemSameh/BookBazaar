@@ -41,5 +41,5 @@ BookBazaar - Online Bookstore Platform.
      - *Views*:
        - Organized into folders (Cart, Home), each containing views (Razor pages) for rendering the customer interface.
        
-   -*Identity*:
+   - *Identity*:
     - This area contains components for managing user authentication and authorization using ASP.NET Core Identity.
