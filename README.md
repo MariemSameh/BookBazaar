@@ -8,11 +8,11 @@ BookBazaar - Online Bookstore Platform.
   - *Razor Pages*: For creating dynamic, server-side web pages.
   - *ASP.NET Core Identity*: For user management (registration, login, roles).
   - *Stripe*: For managing Payments.
-*Design Patterns Used*:
-- *Repository Pattern*: This design pattern abstracts the data access logic, making the code more maintainable and testable.
-- *Unit of Work Pattern*: This pattern coordinates the work of multiple repositories, ensuring that changes to multiple entities are managed in a single transaction.
-*Project Architecture*:
-1. *BookBazaar.DataAccess*:
+- *Design Patterns Used*:
+  - *Repository Pattern*: This design pattern abstracts the data access logic, making the code more maintainable and testable.
+  - *Unit of Work Pattern*: This pattern coordinates the work of multiple repositories, ensuring that changes to multiple entities are managed in a single transaction.
+- *Project Architecture*:
+  1. *BookBazaar.DataAccess*:
    - This layer handles data access and the interaction with the database using Entity Framework Core.
    - *Key folders*:
      - *Data*: 
